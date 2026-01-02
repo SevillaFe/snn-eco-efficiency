@@ -32,42 +32,19 @@ This study introduces a methodology to measure CO₂ emissions and energy consum
 │   └── .gitkeep
 │
 ├── src/
-│   ├── datasets/
-│   │   ├── __init__.py
-│   │   ├── udacity_dataset.py         # Udacity dataset loader
-│   │   └── sully_chen_dataset.py      # Sully Chen dataset loader
+│   ├── CNN/
+│   │   ├── PilotNet_PaloAlto_Dataset.py     # Udacity dataset
+│   │   └── PilotNet_Udacity_Dataset.py      # Sully Chen dataset
 │   │
-│   ├── encoding/
-│   │   ├── __init__.py
-│   │   ├── encode_rate_udacity.py     # Rate encoding for Udacity
-│   │   └── encode_rate_sully.py       # Rate encoding for Sully Chen
+│   ├── ETL/
+│   │   ├── Encode_SNN_PaloAlto_Dataset.py     # ETL encoding for Udacity
+│   │   └── Encode_SNN_Udacity_Dataset.py      # ETL encoding for Sully Chen
 │   │
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── cnn_pilotnet.py            # CNN PilotNet baseline
-│   │   ├── snn_pilotnet.py            # SNN PilotNet adaptation
-│   │   └── snn_lasknet.py             # SNN LaskNet architecture
-│   │
-│   └── training/
-│       ├── __init__.py
-│       ├── train_cnn_udacity.py       # CNN training - Udacity
-│       ├── train_cnn_sully.py         # CNN training - Sully Chen
-│       ├── train_snn_udacity.py       # SNN training - Udacity
-│       └── train_snn_sully.py         # SNN training - Sully Chen
-│
-├── configs/
-│   ├── encoding_configs.yaml          # Encoding hyperparameters (S, G)
-│   └── training_configs.yaml          # Training hyperparameters
-│
-├── scripts/
-│   ├── run_all_experiments.sh         # Run complete pipeline
-│   ├── encode_datasets.sh             # Encode all configurations
-│   └── train_models.sh                # Train all models
-│
-├── notebooks/
-│   ├── 01_exploratory_analysis.ipynb  # Dataset exploration
-│   ├── 02_results_visualization.ipynb # Results and plots
-│   └── 03_tradeoff_analysis.ipynb     # Performance vs emissions
+│   ├── SNN/
+│   │   ├── SNN_LaskNet_PaloAlto_Dataset.py           # SNN LaskNet and h5 file for Sully Chen
+│   │   ├── SNN_LaskNet_Udacity_Dataset.py            # SNN PilotNet and h5 file for Udacity
+│   │   ├── SNN_PilotNet_PaloAlto_Dataset.py          # SNN LaskNet and h5 file for Sully Chen
+│   │   └── SNN_PilotNet_Udacity_Dataset.py           # SNN PilotNet and h5 file for Udacity
 │
 ├── results/
 │   ├── figures/                       # Generated plots
@@ -116,88 +93,18 @@ cd data
 # Follow instructions in data/README.md
 ```
 
-### Basic Usage
-
-#### 1. Encode Datasets
-
-```bash
-# Encode Udacity dataset with multiple configurations
-python src/encoding/encode_rate_udacity.py \
-    --data_dir ./data/udacity \
-    --output_dir ./data/encoded/udacity \
-    --num_steps 5 15 25 \
-    --gain 0.5 1.0
-
-# Encode Sully Chen dataset
-python src/encoding/encode_rate_sully.py \
-    --data_dir ./data/sully_chen \
-    --output_dir ./data/encoded/sully_chen \
-    --num_steps 5 15 25 \
-    --gain 0.5 1.0
-```
-
-#### 2. Train CNN Baseline
-
-```bash
-# Train CNN on Udacity
-python src/training/train_cnn_udacity.py \
-    --data_dir ./data/udacity \
-    --batch_size 64 \
-    --epochs 40 \
-    --learning_rate 1e-4
-
-# Train CNN on Sully Chen
-python src/training/train_cnn_sully.py \
-    --data_dir ./data/sully_chen \
-    --batch_size 128 \
-    --epochs 40
-```
-
-#### 3. Train SNN Models
-
-```bash
-# Train SNN on encoded Udacity dataset
-python src/training/train_snn_udacity.py \
-    --h5_file ./data/encoded/udacity/encoded_dataset_rate_numsteps_25_gain_1.0.h5 \
-    --batch_size 64 \
-    --epochs 40 \
-    --model pilotnet
-
-# Train SNN on Sully Chen
-python src/training/train_snn_sully.py \
-    --h5_file ./data/encoded/sully_chen/encoded_dataset_rate_numsteps_25_gain_1.0.h5 \
-    --batch_size 64 \
-    --epochs 40
-```
-
-#### 4. Run Complete Pipeline
-
-```bash
-# Run all experiments (encoding + training for all configurations)
-bash scripts/run_all_experiments.sh
-```
-
 ## Reproducing Paper Results
 
 To reproduce the exact results from the paper:
 
 ```bash
 # 1. Encode datasets with all configurations
-bash scripts/encode_datasets.sh
 
 # 2. Train all models
-bash scripts/train_models.sh
 
 # 3. Generate plots and tables
-jupyter notebook notebooks/02_results_visualization.ipynb
-jupyter notebook notebooks/03_tradeoff_analysis.ipynb
-```
 
-Expected outputs:
-- **Training/validation curves** (Figure 3-6 in paper)
-- **Trade-off analysis plots** (Figure 7)
-- **Statistical tables** (Tables 3-6 in paper)
-- **Emissions logs** in `results/emissions/`
+```
 
 ## Results Summary
 
