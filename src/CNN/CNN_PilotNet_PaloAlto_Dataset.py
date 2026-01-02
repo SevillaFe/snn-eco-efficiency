@@ -159,11 +159,11 @@ class PilotNetDataModule(pl.LightningDataModule):
     
 
 if __name__ == "__main__":
-    data_dir = '/Users/fernando/Documents/Doctorado/PaloAlto_Dataset/Original_Images/'  # Root directory containing "IMG" folder and CSV file
+    data_dir = '.../PaloAlto_Dataset/Original_Images/'  # Root directory containing "IMG" folder and CSV file
     csv_file = os.path.join(data_dir, "driving_log.csv")  # Path to the CSV file
     
      # Define the path to store EmissionsTracker output
-    output_dir_cnn = '/Users/fernando/Documents/Doctorado/PaloAlto_Dataset/No_encoded_cnn/Emissions/Emissions_model'
+    output_dir_cnn = '.../PaloAlto_Dataset/No_encoded_cnn/Emissions/Emissions_model'
     
 
     data_module = PilotNetDataModule(data_dir=data_dir, csv_file=csv_file, batch_size=128)
