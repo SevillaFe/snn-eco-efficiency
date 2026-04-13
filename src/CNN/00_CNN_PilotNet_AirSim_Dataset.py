@@ -276,13 +276,11 @@ if __name__ == "__main__":
     # Root folder that contains the session sub-folders (normal_1, normal_2 …)
     # Adjust this to wherever you extracted the AirSim E2E dataset.
     data_raw_dir = (
-        "/Users/fernando/Documents/Doctorado/"
-        "AirSim_Dataset/Original_Images"
+        "./AirSim_Dataset/Original_Images"
     )
 
     output_dir_cnn = (
-        "/Users/fernando/Documents/Doctorado/"
-        "AirSim_Dataset/No_encoded_cnn/Emissions/Emissions_model"
+        "./AirSim_Dataset/No_encoded_cnn/Emissions/Emissions_model"
     )
     os.makedirs(output_dir_cnn, exist_ok=True)
 
@@ -301,7 +299,7 @@ if __name__ == "__main__":
     # ------------------------------------------------------------------
     logger_name = "CNN_PilotNet_AirSim"
     logger = TensorBoardLogger(
-        "/Users/fernando/Documents/Doctorado/Scripts_Encoding/Scripts/Scripts_Paper_2/tb_logs_paper2", name=logger_name
+        "./Scripts_Encoding/Scripts/Scripts_Paper_2/tb_logs_paper2", name=logger_name
         )
 
 
