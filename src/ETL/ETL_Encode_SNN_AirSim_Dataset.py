@@ -265,17 +265,14 @@ if __name__ == "__main__":
     # ------------------------------------------------------------------
     # Root of the AirSim E2E dataset (contains the session sub-folders)
     data_raw_dir = (
-        "/Users/fernando/Documents/Doctorado/"
-        "AirSim_Dataset/Original_Images"
+        "./AirSim_Dataset/Original_Images"
     )
 
     emissions_dir = (
-        "/Users/fernando/Documents/Doctorado/"
-        "AirSim_Dataset/Encoded_Images/Rate/Emissions"
+        "./AirSim_Dataset/Encoded_Images/Rate/Emissions"
     )
     save_dir = (
-        "/Users/fernando/Documents/Doctorado/"
-        "AirSim_Dataset/Encoded_Images/Rate/Encoded_Datasets"
+        "./AirSim_Dataset/Encoded_Images/Rate/Encoded_Datasets"
     )
     os.makedirs(save_dir, exist_ok=True)
 
