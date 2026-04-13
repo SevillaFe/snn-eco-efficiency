@@ -131,22 +131,22 @@ class H5PilotNetDataModule(pl.LightningDataModule):
 if __name__ == "__main__":
 
     # Define the path to the encoded dataset
-    h5_dir_rate = '/Users/fernando/Documents/Doctorado/AirSim_Dataset/Encoded_Images/Rate/Encoded_Datasets'
+    h5_dir_rate = './AirSim_Dataset/Encoded_Images/Rate/Encoded_Datasets'
     h5_file_rate = 'encoded_dataset_rate_numsteps_25_gain_1.0.h5'
     h5_file_path_rate = os.path.join(h5_dir_rate, h5_file_rate)
 
-    #h5_dir_latency = '/Users/fernando/Documents/Doctorado/AirSim_Dataset/Encoded_Images/Latency/Encoded_Datasets'
+    #h5_dir_latency = './AirSim_Dataset/Encoded_Images/Latency/Encoded_Datasets'
     #h5_file_latency = 'encoded_dataset_latency_numsteps_50_tau_2.5.h5'
     #h5_file_path_latency = os.path.join(h5_dir_latency, h5_file_latency)
 #
-    #h5_dir_delta = '/Users/fernando/Documents/Doctorado/AirSim_Dataset/Encoded_Images/Delta/Encoded_Datasets'
+    #h5_dir_delta = './AirSim_Dataset/Encoded_Images/Delta/Encoded_Datasets'
     #h5_file_delta = 'encoded_dataset_delta_threshold_1.0.h5'
     #h5_file_path_delta = os.path.join(h5_dir_delta, h5_file_delta)
     
     # Define the path to store EmissionsTracker output
-    output_dir_rate = '/Users/fernando/Documents/Doctorado/AirSim_Dataset/Encoded_Images/Rate/Emissions/Emissions_model/PilotNet'
-    #output_dir_latency = '/Users/fernando/Documents/Doctorado/AirSim_Dataset/Encoded_Images/Latency/Emissions/Emissions_model/PilotNet'
-    #output_dir_delta = '/Users/fernando/Documents/Doctorado/AirSim_Dataset/Encoded_Images/Delta/Emissions/Emissions_model/PilotNet'
+    output_dir_rate = './AirSim_Dataset/Encoded_Images/Rate/Emissions/Emissions_model/PilotNet'
+    #output_dir_latency = './AirSim_Dataset/Encoded_Images/Latency/Emissions/Emissions_model/PilotNet'
+    #output_dir_delta = './AirSim_Dataset/Encoded_Images/Delta/Emissions/Emissions_model/PilotNet'
 
 
     # Create the data module and model
@@ -155,7 +155,7 @@ if __name__ == "__main__":
     
     # Create a logger for TensorBoard
     logger_name = f"SNN_PilotNet_AirSim_{h5_file_rate.split('_', 3)[-1].replace('.h5', '')}"
-    logger = TensorBoardLogger("/Users/fernando/Documents/Doctorado/Scripts_Encoding/Scripts/Scripts_Paper_2/tb_logs_paper2", name=logger_name)
+    logger = TensorBoardLogger("./Scripts_Encoding/Scripts/Scripts_Paper_2/tb_logs_paper2", name=logger_name)
 
     # Record whole carbon footprint 
     tracker_training = EmissionsTracker(
